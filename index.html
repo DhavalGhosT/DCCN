@@ -1,16 +1,24 @@
 <html>
-    <title>Realtime Editor/Collaboration</title>
-    <body>
-        <div class="files">
-            <ul class="file-list" id="fileList">
-                
-            </ul>
+<title>Realtime Editor/Collaboration</title>
+
+<body>
+    <div class="files">
+        <label for="fileList">List of files on the server:-</label>
+        <ul class="file-list" id="fileList">
+
+        </ul>
+        <div class="form">
+            <input type="text" name="name" id="name">
+            <button id="newFile">New File</button>
         </div>
-        <h3>Realtime Editor/Collaboration</h3>
-        <div>
-            <textarea rows="30" cols="50" id="editor" style="background-color:dimgrey;color:white" placeholder="Type Your Text..."></textarea>
-        </div>
-    </body>
-    <script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
-    <script src="./client.js"></script>
+    </div>
+    <h3>Realtime Editor/Collaboration</h3>
+    <div>
+        <textarea rows="30" cols="50" id="editor" style="background-color:dimgrey;color:white"
+            placeholder="Type Your Text..."></textarea>
+    </div>
+</body>
+<script src="./node_modules/socket.io-client/dist/socket.io.js"></script>
+<script src="./client.js"></script>
+
 </html>

@@ -1,4 +1,5 @@
 const log = console.log
+
 // initialize http server, socket.io and port number
 let file = null
 const fs = require('fs')
@@ -26,10 +27,24 @@ fs.readFile('files.json', (err, data) => {
                 file[evt.slice(10, 40).trim()] = evt.slice(40)
                 log(file)
                 socket.broadcast.emit('message', evt)
+            } else if (evt.startsWith('n3Wf1|30k!')) {
+                log(evt)
+                file[evt.slice(10)] = ''
+                log(file)
+                socket.send('h34d3rDCCN' + JSON.stringify(file))
+                socket.broadcast.emit('message', 'h34d3rDCCN' + JSON.stringify(file))
             }
         })
     })
     io.on('disconnect', (evt) => {
         log('some people left')
+    })
+
+    process.on('SIGINT', () => {
+        log('Server Closing!')
+        fs.writeFile('files.json', JSON.stringify(file), () => {
+            log('File Saved')
+        })
+        io.close()
     })
 })

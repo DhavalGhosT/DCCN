@@ -7,14 +7,27 @@ function getEl(id) {
     return document.getElementById(id)
 }
 const editor = getEl("editor")
+const newFileButton = getEl('newFile')
+const inputFileName = getEl('name')
 const listElements = document.getElementsByTagName('li')
-l(listElements)
+
 editor.addEventListener("keyup", (evt) => {
     file[selectedFile] = editor.value
     const headBlanks = 30 - selectedFile.length;
     header = 'f1|ech4ng3' + selectedFile + (' '.repeat(headBlanks)) + editor.value
     l('keyUP', header)
     socket.send(header)
+})
+
+newFileButton.addEventListener('click', event => {
+    l('event ON')
+    fileName = inputFileName.value
+    if (fileName != '' && fileName.length <= 30) {
+        l(fileName)
+        header = 'n3Wf1|30k!' + fileName
+        socket.send(header)
+        inputFileName.value = ''
+    }
 })
 
 socket.on('message', (data) => {
@@ -44,12 +57,7 @@ socket.on('message', (data) => {
         }
         l(listElements, 'heli')
 
-    }
-    /*else {
-
-           editor.value = data
-       }*/
-    else if (data.startsWith('f1|ech4ng3')) {
+    } else if (data.startsWith('f1|ech4ng3')) {
         let changedFile = data.slice(10, 40).trim()
         file[changedFile] = data.slice(40)
         // l(file)
