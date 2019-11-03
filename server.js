@@ -5,7 +5,7 @@ const fs = require('fs')
 fs.readFile('files.json', (err, data) => {
     log(data.toString())
     file = JSON.parse(data.toString())
-    
+
     const http = require('http').createServer()
     const io = require('socket.io')(http)
     const port = 3000
@@ -15,13 +15,18 @@ fs.readFile('files.json', (err, data) => {
         newConnectionFlag = true
         if (newConnectionFlag) {
             header = 'h34d3rDCCN'
-            header += JSON.stringify(file)            
+            header += JSON.stringify(file)
             socket.send(header)
 
         }
         socket.on('message', (evt) => {
-            log(evt,'evt')
-            socket.broadcast.emit('message', evt)
+            log(evt, 'evt')
+            if (evt.startsWith('f1|ech4ng3')) {
+                log(evt.slice(10, 40))
+                file[evt.slice(10, 40).trim()] = evt.slice(40)
+                log(file)
+                socket.broadcast.emit('message', evt)
+            }
         })
     })
     io.on('disconnect', (evt) => {
