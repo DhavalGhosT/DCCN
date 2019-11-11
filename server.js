@@ -1,5 +1,6 @@
 const log = console.log
 
+
 // initialize http server, socket.io and port number
 let file = null
 const fs = require('fs')
@@ -28,9 +29,10 @@ fs.readFile('files.json', (err, data) => {
                 log(file)
                 socket.broadcast.emit('message', evt)
             } else if (evt.startsWith('n3Wf1|30k!')) {
-                log(evt)
+                log(evt,"yo")
                 file[evt.slice(10)] = ''
-                log(file)
+                log(evt.slice(10), "boys")
+                log(file," file ingo")
                 socket.send('h34d3rDCCN' + JSON.stringify(file))
                 socket.broadcast.emit('message', 'h34d3rDCCN' + JSON.stringify(file))
             }
