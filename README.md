@@ -8,7 +8,7 @@ Rahul Soni (54), 2017130060, rahul.soni@spit.ac.in
 
 Dhaval Umarale (58), 2017130065, dhaval.umarale@spit.ac.in
 
-Dipam Shah (50), 2017130054, dipam.shah@spi.ac.in
+Dipam Shah (50), 2017130054, dipam.shah@spit.ac.in
 
 Taksh Soni (54), 2017130061, taksh.soni@spit.ac.in
 
